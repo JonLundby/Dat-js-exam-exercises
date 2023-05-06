@@ -2,12 +2,21 @@
 
 window.addEventListener("load", startApp);
 
+let userList;
 async function startApp() {
-  const userList = await getUsers();
+  userList = await getUsers();
 
   console.log(userList);
 
-  userList.forEach(showUser);
+  
+  const result = userList.filter(isAdmin);
+
+  function isAdmin(user) {
+    if (user.role === "admin") {
+      return user;
+    }
+  }
+  result.forEach(showUser);
 }
 
 async function getUsers() {
