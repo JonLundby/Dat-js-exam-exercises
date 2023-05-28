@@ -3,13 +3,17 @@
 window.addEventListener("load", startApp);
 
 function startApp() {
-    document.querySelector("#result_failure").classList.add("hide");
-    document.querySelector("#result_success").classList.add("hide")
-    document.querySelector("#btn-knap").addEventListener("click", clicked);
+  hideText();
+  document.querySelector("#btn-knap").addEventListener("click", clicked);
 }
 
 function clicked() {
-    console.log("Det virker!");
-    document.querySelector("#result_failure").classList.add("hide");
-    document.querySelector("#result_success").classList.add("show")
+  console.log("Det virker!");
+  document.querySelector("#result_failure").classList.add("hide");
+  document.querySelector("#result_success").classList.add("show");
+}
+
+function hideText() {
+  document.querySelector("#result_failure").classList.add("hide");
+  document.querySelector("#result_success").classList.add("hide");
 }
