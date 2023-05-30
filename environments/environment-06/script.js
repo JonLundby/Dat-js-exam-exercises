@@ -37,17 +37,32 @@ function displayItems(item) {
 
   document.querySelector("#products").insertAdjacentHTML("beforeend", html);
   document.querySelector("article:last-child button").addEventListener("click", addToBasket);
-
+  
   function addToBasket() {
-    basket.push(item);
+      basket.push(item);
+      
+      itemsCount++;
+      document.querySelector("#total-in-basket").textContent = Number(itemsCount);
+      
+      itemsPrice += item.price;
+      document.querySelector("#total-products").textContent = Number(itemsPrice);
+      
+      itemsWeight += item.weight;
+      document.querySelector("#total-weight").textContent = Number(itemsWeight);
 
-    itemsCount++;
-    document.querySelector("#total-in-basket").textContent = Number(itemsCount);
+      const htmlItem = /*html*/ `
+                <tr>
+                    <td>
+                <button class="remove">-</button>
+                  ANTAL
+                <button class="add">+</button>
+              </td>
+              <td>${item.name}</td>
+              <td>PRIS PR STK ${item.price},-</td>
+              <td>PRIS I ALT${itemsPrice},-</td>
+            </tr>
+      `;
 
-    itemsPrice += item.price;
-    document.querySelector("#total-products").textContent = Number(itemsPrice);
-
-    itemsWeight += item.weight;
-    document.querySelector("#total-weight").textContent = Number(itemsWeight);
+      document.querySelector("#basket tbody").insertAdjacentHTML("beforeend", htmlItem);
   }
 }
